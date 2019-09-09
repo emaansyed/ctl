@@ -1,1 +1,147 @@
+Title: Hawaii Indigency Calculator
+Author: Emaan Syed
+Before:<link rel="stylesheet" type="text/css" href="https://suffolklitlab.org/howto/qna/style/style.css">
+<div id="icon" style="background-size: 110px 99px;background-image: url('https://suffolklitlab.org/howto/qna/images/maxheadroom.gif');"></div>
+<h2 style="text-align:center;">Hawaii Indigency Calculator</h2>
+<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
+<p>Answer the following questions to see if someone qualifies for appointment of counsel.</p>
 
+
+Q(1): Has your client been arrested, or charged, or convicted of an offense punishable by confinement in jail or prison?
+A: Yes.
+	Q(1.1):GOTO:name 
+A: No.
+	Q(1.2): Your client is likely ineligible to receive a public defender for criminal defense.
+Q(name): What is your client's name?
+
+X:
+	Q(2.1): We will now figure if <x>name</x> is eligible as an indigent criminal defendent for representation by a public defender:GOTO:3
+	
+Q(3): How many individuals are in <x>name</x>'s household including <x>name</x>?
+A: 1
+	Q(3.1):GOTO:4
+A: 2
+	Q(3.2):GOTO:6
+A: 3
+	Q(3.3):GOTO:7
+A: 4
+	Q(3.4):GOTO:8
+A: 5
+	Q(3.5):GOTO:9
+A: 6
+	Q(3.6):GOTO:10
+A: 7+
+	Q(3.7):GOTO:more
+
+Q(4): Does the household income exceed $14,380?
+A: Yes
+	Q(4.1):GOTO:eligible4
+A: No.
+	Q(4.2):GOTO:ineligible4
+Q(5): Does the household income exceed $19,460?
+A: Yes.
+	Q(5.1):GOTO:eligible3
+A: No.
+	Q(5.2):GOTO:ineligible3
+Q(6): Does the household income exceed $19,460?
+A: Yes.
+	Q(6.1):GOTO:eligible4
+A: No.
+	Q(6.2):GOTO:ineligible4
+Q(7): Does the household income exceed $24,540?
+A: Yes.
+	Q(7.1):GOTO:eligible5
+A: No.
+	Q(7.2):GOTO:ineligible5
+Q(8): Does the household income exceed $29,620?
+A: Yes.
+	Q(8.1):GOTO:eligible6
+A: No.
+	Q(8.2):GOTO:ineligible6
+Q(9): Does the household income exceed $34,700?
+A: Yes.
+	Q(9.1):GOTO:eligible7
+A: No.
+	Q(9.2):GOTO:ineligible7
+Q(10): Does the household income exceed $39,780?
+A: Yes.
+	Q(10.1):GOTO:eligible8
+A: No.
+	Q(10.2):GOTO:ineligible8
+
+Q(more): How many individuals are in <x>name</x>'s household?
+A: 7
+	Q(11.1):GOTO:12
+A: 8
+	Q(11.2):GOTO:13
+A: 9
+	Q(11.3):GOTO:14
+A: 10
+	Q(11.4):GOTO:15
+A: 11
+	Q(11.5):GOTO:16
+
+Q(12): Does the household income exceed $44,860?
+A: Yes.
+	Q(12.1):GOTO:eligible9
+A: No.
+	Q(12.2):GOTO:ineligible9
+Q(13): Does the household income exceed $49,940?
+A: Yes.
+	Q(13.1):GOTO:eligible10
+A: No.
+	Q(13.2):GOTO:ineligible10
+Q(14): Does the household income exceed $55,020?
+A: Yes.
+	Q(14.1):GOTO:eligible11
+A: No.
+	Q(14.2):GOTO:ineligible11
+Q(15): Does the household income exceed $60,100?
+A: Yes.
+	Q(15.1):GOTO:eligible12
+A: No.
+	Q(15.2):GOTO:ineligible12
+Q(16): Does the household income exceed $65,180?
+A: Yes.
+	Q(16.1):GOTO:eligible13
+A: No
+	Q(16.2):GOTO:ineligible13
+
+Q(eligible1): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible1): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible2): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible2): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible3): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible3): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible4): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible4): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible5): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible5): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible6): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible6): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible7): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible7): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible8): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible8): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible9): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible9): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible10): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible10): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible11): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible11): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible12): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible12): Your client is likely ineligible to receive representation from a public defender.
+
+Q(eligible13): Your client is likely eligible to receive representation from a public defender.
+Q(ineligible13): Your client is likely ineligible to receive representation from a public defender.
