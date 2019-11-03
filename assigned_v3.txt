@@ -1,0 +1,78 @@
+Title: Hawaii Indigency Calculator
+Author: Emaan Syed
+Before: <link rel="stylesheet" type="text/css" href="https://suffolklitlab.org/howto/qna/style/style.css">
+<div id="icon" style="background-size: 110px 99px;background-image: url('https://suffolklitlab.org/howto/qna/images/maxheadroom.gif');"></div>
+<h2 style="text-align:center;">Hawaii Indigency Calculator</h2>
+<p><b>This is a <a href="http://www.codingthelaw.org/">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
+<p>Answer the following questions to see if you qualify for an appointment of counsel.</p>
+After: 
+<script>
+function fedpov(house,income,percentage){
+	// Determines if your income is less than or equal to 
+	// a percentage of the 2019 federal poverty guidelines 
+	// for the contiguous United States. See
+	// https://www.federalregister.gov/documents/2019/02/01/2019-00621/annual-update-of-the-hhs-poverty-guidelines
+	
+		var line = NaN;
+	
+		if (house == 1) {
+			line = 14380;
+		} else if (house == 2) {
+			line = 19460;
+		} else if (house == 3) {
+			line = 24540;
+		} else if (house == 4) {
+			line = 29620;
+		} else if (house == 5) {
+			line = 34700;
+		} else if (house == 6) {
+			line = 39780;
+		} else if (house == 7) {
+			line = 44860;
+		} else if (house == 8) {
+			line = 49940;
+		} else if (house > 8) {
+			line = 49940 + (house-8)*5080;
+		}
+	
+		if (income <= (line*(percentage/100))) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+</script>	
+
+
+Q(house): How many people are in your client's household?
+X:number
+	Q(income): How much income does your client's household bring in per year?
+	X:number
+		Q(1.1.1): Is your client arrested, or charged, or convicted of an offense punishable by confinement in jail or prison?
+		A[javascript:if (fedpov(getvar('house'),getvar('income'),100)){ goto('qual') } else { goto('noqual') } ]: Yes.
+		A: No.
+			Q(1.1.1.2):GOTO:qualend
+
+Q(qual): Your client probably qualifies as indigent since income earned is less than 100% of the poverty line. Your client will likely be assigned a public defender. See <a href="https://law.justia.com/codes/hawaii/2013/title-38/chapter-802/section-802-4/" target=_new>Indingency Determination</a>.
+A: next	
+	Q(qual.1):GOTO:download
+
+
+Q(qualend): Your client is likely inelegible to receive representation from a public defender.. See <a href="https://law.justia.com/codes/hawaii/2013/title-38/chapter-802/section-802-4/" target=_new>Indingency Determination</a>.
+
+Q(noqual): Your client probably won't qualify as indigent for a public deender since income earned is more than 100% of the poverty line. See <a href="https://law.justia.com/codes/hawaii/2013/title-38/chapter-802/section-802-4/" target=_new>HI Rev Stat § 802-4 (2013)</a>. So you'll probably need to hire an attorney. Would you like to search for one near you?
+A:[https://www.avvo.com/find-a-lawyer] Yes.
+	Q(4.1):GOTO:download
+A: No.
+	Q(4.2):GOTO:download
+
+Q(download): Thank you. I hope you have a nice day. Please click Submit to download results.
+A[javascript:if (fedpov(getvar('house'),getvar('income'),100)){ goto('eligible') } else { goto('noneligible') } ]: Submit.
+
+Q(eligible):<input type="hidden" name="name" value="eligible"/>
+<input type="hidden" name="docx_uri" value="https://emaansyed.github.io/ctl/eligible.docx"/>Your client probably will qualify as indigent for a public defender. See <a href="https://law.justia.com/codes/hawaii/2013/title-38/chapter-802/section-802-4/" target=_new>Indingency Determination</a>.
+A:[javascript:submit2('http://colarusso.pythonanywhere.com/2docx/','POST','','','','json_doc','_blank')]Download
+Q(noneligible):<input type="hidden" name="name" value="noneligible"/>
+<input type="hidden" name="docx_uri" value="https://emaansyed.github.io/ctl/noneligible.docx"/>Your client probably won't qualify as indigent for a public defender. See <a href="https://law.justia.com/codes/hawaii/2013/title-38/chapter-802/section-802-4/" target=_new>Indingency Determination</a>.
+A:[javascript:submit2('http://colarusso.pythonanywhere.com/2docx/','POST','','','','json_doc','_blank')]Download
+
